@@ -1,0 +1,10 @@
+h1 Succes to create your short url!
+
+- uri = 'http://' + request.host_with_port + '/' + @url.short
+p
+  Short URL:
+  = link_to uri, uri
+
+p
+  Original URL:
+  = @url.orig
