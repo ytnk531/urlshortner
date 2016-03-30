@@ -1,6 +1,27 @@
-h1 Url shortener
+.center.jumbotron
+  h1 URL shortener
+  p.lead 
+    | Input URL. You'll get short URL.
+  
+  -if @url.errors.any?
+    ul
+      - @url.errors.full_messages.each do |mes|
+        li.err = mes
 
-= form_for @url do |f|
-  = f.text_field :orig
-  = f.submit
+  .form-inline
+    = form_for @url do |f|
+      .form-group
+        = f.text_field :orig, class: "form-control", size: "70%"
+      = f.submit "Shorten!", class: "btn btn-primary"
 
+  table.table.table-striped
+    thead
+      tr
+        th Original URL
+        th Short URL
+    tbody
+      - @urls.each do |url|
+        -uri = 'http://' + request.host_with_port + '/' + url.short
+        tr
+          td = link_to url.orig, url.orig
+          td = link_to uri, uri

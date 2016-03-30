@@ -3,13 +3,21 @@ class UrlsController < ApplicationController
 
   def index
     @url = Url.new
+    @urls = Url.all
   end
 
   def create
+    @urls = Url.all
     @url = Url.new
     @url.orig = params[:url][:orig]
     @url.short= gen_name
-    @url.save
+    if @url.save
+      notice = 'fuck'
+    else
+      render :index
+    end
+
+
   end
     
   def view

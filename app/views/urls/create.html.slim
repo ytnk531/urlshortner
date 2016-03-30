@@ -1,10 +1,15 @@
-h1 Succes to create your short url!
+.center.jumbotron
 
-- uri = 'http://' + request.host_with_port + '/' + @url.short
-p
-  Short URL:
-  = link_to uri, uri
+  - uri = 'http://' + request.host_with_port + '/' + @url.short
+  - orig = @url.orig
 
-p
-  Original URL:
-  = @url.orig
+  h3
+    | Short URL: 
+    = link_to uri, uri
+  
+  h3
+    small
+      | Original URL: 
+      = link_to orig, orig
+  
+  p = link_to 'Back to index', action: "index"
